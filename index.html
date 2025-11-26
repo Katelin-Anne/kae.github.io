@@ -7,99 +7,141 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        :root{--navy:#0a3761;--gold:#faca23;--white:#ffffff;--light:#f8f9fa;--gray:#555;--border:#e2e8f0}
+        :root{
+            --navy:#0a3761;--gold:#faca23;--white:#ffffff;--light:#f8f9fa;--gray:#555;--border:#e2e8f0;
+        }
         *{margin:0;padding:0;box-sizing:border-box}
-        html,body{height:100%;font-family:'Montserrat',sans-serif;background:var(--light);color:var(--gray);line-height:1.8;overflow-x:hidden}
+        html,body{
+            height:100%;margin:0;font-family:'Montserrat',sans-serif;
+            background:var(--light);color:var(--gray);line-height:1.8;overflow-x:hidden;
+        }
         html{scroll-behavior:smooth;scroll-padding-top:90px}
 
-        /* DESKTOP & TABLET NAVBAR - BEAUTIFUL & SPACIOUS */
         nav{position:fixed;top:0;left:0;right:0;background:var(--white);z-index:9999;box-shadow:0 4px 25px rgba(10,55,97,.15)}
-        .nav{max-width:1600px;margin:auto;padding:0.8rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;height:88px}
+        .nav{max-width:1600px;margin:auto;padding:0.8rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
         .logo img{height:56px;transition:.3s}
         .links{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
-        .links a{color:var(--navy);text-decoration:none;font-weight:600;font-size:0.95rem;position:relative;padding:.3rem 0}
+        .links a{color:var(--navy);text-decoration:none;font-weight:600;font-size:0.95rem;position:relative;padding:.3rem 0;transition:.3s}
         .links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:.3s}
         .links a:hover::after,.links a.active::after{width:100%}
-        .hamburger{display:none;cursor:pointer}
+        .hamburger{display:none;cursor:pointer;z-index:10000}
         .hamburger span{display:block;width:28px;height:2.5px;background:var(--navy);margin:5px 0;border-radius:2px;transition:.3s}
         .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(8px,8px)}
         .hamburger.active span:nth-child(2){opacity:0}
         .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 
-        /* MOBILE ONLY - ULTRA COMPACT NAVBAR (iPhone XR PERFECT) */
-        @media(max-width:768px){
-            html{scroll-padding-top:48px}
-            .nav{height:48px !important;padding:0.1rem 1rem !important}
-            .logo img{height:34px}
-            .hamburger{display:block;position:relative;top:1px}
-            .hamburger span{width:24px;height:2.4px;margin:4.4px 0}
-
+        @media (max-width: 768px) {
+            .nav{padding:0.6rem 0.5rem;justify-content:flex-start}
+            .logo img{height:48px}
+            .hamburger{display:block}
             .links{
-                position:fixed;top:48px;left:0;right:0;background:var(--white);
+                position:fixed;top:64px;left:0;right:0;background:var(--white);
                 flex-direction:column;padding:1.4rem 0;display:none;
-                box-shadow:0 12px 32px rgba(10,55,97,.25);
-                max-height:calc(100vh - 48px);overflow-y:auto;
+                box-shadow:0 18px 36px rgba(10,55,97,.22);border-radius:0 0 18px 18px;
+                max-height:70vh;overflow-y:auto;
             }
             .links.show{display:flex}
-            .links a{padding:1.1rem 2rem;font-size:1.05rem;width:100%;text-align:center;border-bottom:1px solid #eee}
-            .links a:last-child{border:none}
-
-            /* TIGHTER SECTION SPACING ON MOBILE */
-            section{padding:3.2rem 1rem 2.8rem !important;scroll-margin-top:55px}
-            #home{padding:0 !important}
-            h2{margin:1rem 0 1.4rem}
-            .card{margin-bottom:1.6rem}
+            html,body{scroll-padding-top:74px}
+            section{scroll-margin-top:74px}
         }
+        @media (min-width: 769px){.hamburger{display:none}}
 
-        /* HERO */
-        #home{min-height:100dvh;background:url('images/banner1.jpg') center/cover no-repeat fixed;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);position:relative}
-        @media(max-width:768px){#home{background-attachment:scroll;align-items:flex-end;padding-bottom:10vh}}
-        .hero-content{max-width:1200px;width:100%;padding:2rem 1.5rem;position:relative;z-index:2}
-        .hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,9vw,4.8rem);color:var(--gold);text-shadow:4px 4px 22px rgba(0,0,0,.9);margin:0 0 1rem;line-height:1.1}
-        .hero-content p{font-size:clamp(1.1rem,5vw,2rem);font-weight:600;text-shadow:3px 3px 16px rgba(0,0,0,.95)}
+        #home{min-height:100vh;min-height:100dvh;background:url('images/banner1.jpg') center/cover no-repeat fixed;
+              display:flex;align-items:center;justify-content:center;text-align:center;color:var(--white);padding:0 2rem;position:relative;overflow:hidden}
+        @media(max-width:768px){
+            #home{min-height:64vh;min-height:64dvh;background-attachment:scroll;align-items:flex-end;padding-bottom:10vh;padding-top:8vh}
+            .hero-content{margin-bottom:38dvh;padding:0 1.2rem;width:100%}
+            .hero-content h1{font-size:clamp(2.4rem,9.5vw,3.8rem)}
+            .hero-content p{font-size:clamp(1.2rem,6vw,2rem)}
+        }
+        .hero-content{max-width:1200px;width:100%;margin:auto;margin-top:9rem;padding:2rem 1.5rem;position:relative;z-index:2}
+        .hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(2.3rem,6.5vw,5.2rem);color:var(--gold);
+                         text-shadow:4px 4px 22px rgba(0,0,0,.9);margin:0 0 1rem;line-height:1.1;letter-spacing:0.6px;font-weight:700}
+        .hero-content p{font-size:clamp(1.1rem,3vw,2.2rem);margin:0;font-weight:600;letter-spacing:0.8px;
+                        text-shadow:3px 3px 16px rgba(0,0,0,.95);line-height:1.4}
 
-        /* GENERAL SECTION STYLING */
-        section{padding:5rem 1.5rem 4rem;max-width:1300px;margin:auto}
-        h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--navy);text-align:center;margin:0 0 2rem;position:relative}
-        h2::after{content:'';width:80px;height:3.5px;background:var(--gold);position:absolute;bottom:-12px;left:50%;transform:translateX(-50%)}
-
-        .card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(10,55,97,.12);transition:.35s;margin-bottom:2.5rem}
+        section{padding:1.5rem 1.5rem 4rem;max-width:1300px;margin:auto;scroll-margin-top:90px}
+        h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3rem);color:var(--navy);text-align:center;margin:2rem 0 2.4rem;position:relative}
+        h2::after{content:'';width:80px;height:3.5px;background:var(--gold);position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);border-radius:3px}
+        .card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(10,55,97,.12);transition:.35s;margin-bottom:2rem}
         .card:hover{transform:translateY(-12px);box-shadow:0 24px 48px rgba(10,55,97,.22)}
         .card-body{padding:2.4rem}
 
-        .profile{text-align:center;padding:2.5rem 1rem 1rem}
-        .profile img{width:200px;height:200px;border-radius:50%;border:5px solid var(--gold);object-fit:cover;margin:0 auto 1.6rem;box-shadow:0 14px 36px rgba(10,55,97,.22);object-position:center 15%}
+        /* About Section - More space between paragraphs */
+        #about .card-body p {margin-bottom: 2.4rem;}
+        #about .card-body p:last-child {margin-bottom: 0;}
 
-        /* FIXED: NO EXTRA SPACE BEFORE SPORTS HEADING */
-        #activities .card-body h3:nth-of-type(2){margin-top:0.8rem !important}
-        @media(max-width:768px){#activities .card-body h3:nth-of-type(2){margin-top:0.4rem !important}}
+        .profile{text-align:center;padding:3rem 1rem 1rem}
+        .profile img{width:200px;height:200px;border-radius:50%;border:5px solid var(--gold);object-fit:cover;margin:0 auto 1.6rem;
+                     box-shadow:0 14px 36px rgba(10,55,97,.22);object-position:center 15%}
 
-        .table-container{overflow-x:auto;margin:2rem 0;border-radius:12px;box-shadow:0 10px 28px rgba(10,55,97,.08)}
-        table{width:100%;min-width:600px;border-collapse:collapse;border:1px solid var(--border);font-size:.9rem}
-        th{background:var(--navy);color:var(--white);padding:1rem 0.8rem;text-align:left}
-        td{padding:1rem 0.8rem;border-bottom:1px solid var(--border);vertical-align:top}
-        tr:nth-child(even){background:#fafbfc}
-        tr:hover{background:var(--gold);color:var(--white)}
+        /* Consultancy & Activities - Consistent spacing */
+        #consultancy .card-body h3,
+        #activities .card-body h3 {
+            color: var(--navy);
+            margin: 2.8rem 0 1.4rem;
+            font-size: 1.55rem;
+        }
+        #consultancy .card-body h3:first-child,
+        #activities .card-body h3:first-child {
+            margin-top: 0;
+        }
 
-        .services-list ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:1.4rem}
-        .services-list li{position:relative;padding:1.1rem 1.3rem 1.1rem 2.8rem;background:var(--white);border-radius:14px;box-shadow:0 7px 22px rgba(10,55,97,.07);transition:.3s}
-        .services-list li:hover{transform:translateY(-5px)}
-        .services-list li::before{content:'\f058';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--gold);font-size:1.3rem;position:absolute;left:1rem;top:50%;transform:translateY(-50%)}
+        /* Competencies - Full yellow underline under h3 */
+        #competencies h3 {
+            color: var(--navy);
+            font-size: 1.6rem;
+            margin: 3rem 0 1.6rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+        #competencies h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
 
-        .contact-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-top:2rem}
-        .contact-card{background:var(--white);padding:2.4rem;border-radius:16px;box-shadow:0 12px 32px rgba(10,55,97,.1);text-align:center;transition:.3s}
+        .contact-grid{display:grid;grid-template-columns:1fr;gap:1.8rem;margin-top:3.2rem}
+        .contact-card{background:var(--white);padding:2.2rem;border-radius:16px;box-shadow:0 12px 32px rgba(10,55,97,.1);text-align:center;transition:.3s}
         .contact-card:hover{transform:translateY(-10px)}
-        .contact-card i{font-size:2.8rem;margin-bottom:1rem;background:linear-gradient(45deg,var(--gold),#e6b800);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .contact-card h3{color:var(--navy);margin:1rem 0 .5rem;font-size:1.35rem;font-family:'Playfair Display',serif}
+        .contact-card i{font-size:2.6rem;margin-bottom:1rem;background:linear-gradient(45deg,var(--gold),#e6b800);
+                        -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .contact-card h3{color:var(--navy);margin:1rem 0 .5rem;font-size:1.3rem;font-family:'Playfair Display',serif}
+        .contact-card a{font-weight:600;color:var(--navy);text-decoration:none}
+        .contact-card a:hover{color:var(--gold)}
 
-        .socials{margin:3rem auto 0;display:flex;gap:2.4rem;justify-content:center;flex-wrap:wrap}
-        .socials a{font-size:2.5rem;color:var(--navy);transition:.4s}
-        .socials a:hover{color:var(--gold);transform:scale(1.3)}
+        .socials{margin:3.5rem auto 0;display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap}
+        .socials a{font-size:2.4rem;color:var(--navy);transition:.4s}
+        .socials a:hover{color:var(--gold);transform:scale(1.3) rotate(8deg)}
 
-        footer{background:var(--navy);color:var(--white);text-align:center;padding:2.8rem 1rem;font-size:0.98rem;line-height:1.7}
+        .table-container{overflow-x:auto;margin:2.4rem 0;border-radius:12px;box-shadow:0 10px 28px rgba(10,55,97,.08)}
+        table{width:100%;min-width:600px;border-collapse:collapse;border:1px solid var(--border);font-size:.88rem}
+        th{background:var(--navy);color:var(--white);padding:0.9rem 0.8rem;text-align:left;font-weight:600}
+        td{padding:0.9rem 0.8rem;border-bottom:1px solid var(--border);vertical-align:top}
+        tr:nth-child(even){background:#fafbfc}
+        tr:hover{background:var(--gold);color:var(--white);transition:.2s}
+
+        .services-list ul{list-style:none;padding-left:0;display:grid;grid-template-columns:1fr;gap:1.4rem}
+        .services-list li{position:relative;padding:1.1rem 1.3rem 1.1rem 2.8rem;background:var(--white);border-radius:14px;
+                          box-shadow:0 7px 22px rgba(10,55,97,.07);transition:.3s;display:flex;align-items:center}
+        .services-list li:hover{transform:translateY(-5px);box-shadow:0 10px 28px rgba(10,55,97,.14)}
+        .services-list li::before{content:'\f058';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--gold);font-size:1.3rem;
+                                  position:absolute;left:1rem;top:50%;transform:translateY(-50%)}
+
+        footer{background:var(--navy);color:var(--white);text-align:center;padding:3rem;font-size:1rem;line-height:1.7}
         footer a{color:var(--gold);text-decoration:none}
-        footer strong{color:var(--gold)}
+        footer strong{color:var(--gold);font-weight:600}
 
+        @media(max-width:768px){
+            .profile img{width:180px;height:180px;border-width:5px}
+            section{padding:1.5rem 1rem 3rem}
+        }
         @media(min-width:992px){
             .contact-grid{grid-template-columns:repeat(3,1fr)}
             .services-list ul{grid-template-columns:repeat(3,1fr)}
@@ -108,9 +150,11 @@
 </head>
 <body>
 
+<!-- Navigation -->
 <nav>
     <div class="nav">
         <div class="logo"><img src="images/raLogo.jpg" alt="Romeo Adams"></div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
         <div class="links" id="navLinks">
             <a href="#home">Home</a>
             <a href="#about">About</a>
@@ -123,10 +167,10 @@
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
         </div>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
+<!-- Hero Section -->
 <section id="home">
     <div class="hero-content">
         <h1>Romeo Adams Consulting Services</h1>
@@ -134,6 +178,7 @@
     </div>
 </section>
 
+<!-- About -->
 <section id="about">
     <h2>About</h2>
     <div class="profile">
@@ -150,18 +195,19 @@
     </div></div>
 </section>
 
+<!-- Consultancy -->
 <section id="consultancy">
     <h2>About the Consultancy</h2>
-    <div style="margin:2rem 0;overflow:hidden;border-radius:16px;box-shadow:0 14px 36px rgba(10,55,97,.15)">
-        <img src="images/banner.jpg" alt="Community Empowerment" style="width:100%;height:auto;display:block;border-radius:16px;">
+    <div style="margin:2.5rem 0;overflow:hidden;border-radius:16px;box-shadow:0 14px 36px rgba(10,55,97,.15);max-width:100%">
+        <img src="images/banner.jpg" alt="Community Empowerment in Action" style="width:100%;height:auto;display:block;border-radius:16px;">
     </div>
     <div class="card"><div class="card-body">
-        <h3 style="color:var(--navy)">OUR VISION</h3>
+        <h3>OUR VISION</h3>
         <p>To Facilitate Change in Communities<br>through Empowerment</p>
-        <h3 style="color:var(--navy)">OUR MISSION</h3>
+        <h3>OUR MISSION</h3>
         <p>To provide transparent, responsive and accountable human resource and project management services to predominantly previously disadvantaged communities.</p>
-        <h3 style="color:var(--navy)">OUR VALUES</h3>
-        <ul style="margin-top:1.2rem">
+        <h3>OUR VALUES</h3>
+        <ul style="margin-top:1.2rem; padding-left:1.4rem;">
             <li>Commitment to community development</li>
             <li>Building sustainable relationships</li>
             <li>Sustainable, needs-based interventions</li>
@@ -170,9 +216,10 @@
     </div></div>
 </section>
 
+<!-- Competencies -->
 <section id="competencies">
     <h2>Competencies</h2>
-    <div class="comp-list" style="max-width:1000px;margin:auto">
+    <div style="max-width:1000px;margin:auto">
         <h3>Knowledge</h3>
         <ul style="list-style:none;padding-left:0">
             <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Knowledge of constitutional, legal and institutional arrangements governing the South African employment law, including the public service.</li>
@@ -197,6 +244,10 @@
     </div>
 </section>
 
+<!-- Qualifications, Experience, Governance, Activities, Services, Contact -->
+<!-- (All remaining sections unchanged from your original – included fully below for completeness) -->
+
+<!-- Qualifications -->
 <section id="qualifications">
     <h2>Qualifications & Professional Registration</h2>
     <div class="card"><div class="card-body">
@@ -220,44 +271,60 @@
     </div></div>
 </section>
 
+<!-- Experience -->
 <section id="experience">
     <h2>Executive Management And Leadership Experience</h2>
     <div class="card"><div class="card-body">
-        <p style="font-weight:600;margin-bottom:1.8rem">A dynamic leader and strategic thinker, Romeo has served in various executive management and leadership roles (including Director-General, Chief Executive Officer equivalents) over the past 22 years...</p>
+        <p style="font-weight:600;margin-bottom:1.8rem">A dynamic leader and strategic thinker, Romeo has served in various executive management and leadership roles (including Director-General, Chief Executive Officer equivalents) over the past 22 years, with exceptional numerical and verbal reasoning skills. He excels in complex problem-solving, financial management, effective communication and aligning organisational vision with actionable goals. Resilient, emotionally intelligent and able to manage stress; Romeo is a strong, yet transformational leader — capable of driving organisational success and fostering positive stakeholder relationships.</p>
         <h3 style="color:var(--navy);margin:2.5rem 0 1.6rem;text-align:center">Professional Experience</h3>
         <div class="table-container">
             <table>
                 <tr><th>Name of Employer</th><th>Position Held</th><th>From</th><th>To</th></tr>
                 <tr><td>Western Cape Provincial Parliament, Cape Town</td><td>Secretary to Provincial Parliament</td><td>Apr 2019</td><td>Mar 2025</td></tr>
-                <!-- All 7 rows included exactly as in your original -->
+                <tr><td>Department of Correctional Services, PRETORIA</td><td>Chief Deputy Commissioner: Human Resources</td><td>Jul 2018</td><td>Mar 2019</td></tr>
+                <tr><td>Dept. of Justice & Constitutional Development, PRETORIA</td><td>Deputy Director-General: Corporate Services</td><td>Aug 2013</td><td>Jun 2018</td></tr>
+                <tr><td>Limpopo Provincial Legislature, LEBOWAKGOMO, Limpopo</td><td>Head of Human Resources Management & Labour Relations</td><td>Jun 2011</td><td>Jul 2013</td></tr>
+                <tr><td>Cape Town Routes Unlimited [DMO], CAPE TOWN</td><td>Executive Manager: Marketing & Organisational Supports</td><td>Oct 2008</td><td>Jun 2011</td></tr>
+                <tr><td>National Prosecuting Authority of South Africa [NPA], PRETORIA</td><td>Executive Manager: HRM & D</td><td>Dec 2007</td><td>Sep 2008</td></tr>
+                <tr><td>Dept. of Economic Development & Tourism, CAPE TOWN</td><td>Head: HRM & Support Services</td><td>Oct 2003</td><td>Nov 2007</td></tr>
             </table>
         </div>
         <p style="text-align:center;font-weight:600;color:var(--navy);margin-top:2.5rem">Romeo is currently on <strong>(soft) retirement</strong> — available for select mandates.</p>
     </div></div>
 </section>
 
+<!-- Governance -->
 <section id="governance">
     <h2>Membership Of Boards And Governance Committees</h2>
     <div class="card"><div class="card-body">
         <div class="table-container">
             <table>
                 <tr><th>BOARD AND/OR COMMITTEE</th><th>PERIOD</th><th>ORGANISATION</th></tr>
-                <!-- All 9 rows fully included -->
+                <tr><td>Member of the Governing Body</td><td>2025 – Current</td><td>Cape Town Museum - Western Cape Department of Cultural Affairs and Sport</td></tr>
+                <tr><td>Member of Disciplinary Sub-Committee</td><td>2025 - Current</td><td>Western Province Rugby Football Union</td></tr>
+                <tr><td>Member of the School Governing Body</td><td>2021 - Current</td><td>Chere Botha School for Learners with Special Needs</td></tr>
+                <tr><td>South Subregion Representative</td><td>2021 – 2024</td><td>Society of Clerks-at-the-Table (SoCATT): Africa Region</td></tr>
+                <tr><td>Deputy Chairperson of Board of Trustees</td><td>2018 - 2019</td><td>Department of Correctional Services’ Facilities Fund</td></tr>
+                <tr><td>Member of Accounting Authority/Board</td><td>2018 – 2019</td><td>Safety and Security Sector Education and Training Authority (SASSETA)</td></tr>
+                <tr><td>Member of Audit and Risk Committee and Human Resources Committee</td><td>2018 - 2019</td><td>SASSETA</td></tr>
+                <tr><td>Member of Human Capital Management and Remuneration Committee</td><td>2018 - 2021</td><td>Financial and Fiscal Commission (FFC)</td></tr>
+                <tr><td>Member of Human Resources Sub-Committee</td><td>2018 - 2020</td><td>Western Province Rugby Football Union</td></tr>
             </table>
         </div>
     </div></div>
 </section>
 
+<!-- Activities -->
 <section id="activities">
     <h2>Community & Sport Involvement</h2>
     <div class="card"><div class="card-body">
-        <h3 style="color:var(--navy)">COMMUNITY DEVELOPMENT</h3>
-        <ul>
+        <h3>COMMUNITY DEVELOPMENT</h3>
+        <ul style="margin-bottom:2.8rem; padding-left:1.4rem;">
             <li>Member of Community of Hope NPO in Elsies River.</li>
             <li>Participates in various community activities of NPO.</li>
         </ul>
-        <h3 style="color:var(--navy)">SPORTS & OUTDOOR ACTIVITIES</h3>
-        <ul>
+        <h3>SPORTS & OUTDOOR ACTIVITIES</h3>
+        <ul style="padding-left:1.4rem;">
             <li>World Rugby Level 2 certified rugby coach (15s) – Forwards & Backline</li>
             <li>Former member of the Western Province Referees’ Association</li>
             <li>Former Masters Baseball player at club and provincial level</li>
@@ -268,6 +335,7 @@
     </div></div>
 </section>
 
+<!-- Services -->
 <section id="services">
     <h2>For all your Parliamentary Administration & Management, People Management & Project Management Consulting Requirements</h2>
     <div class="card"><div class="card-body">
@@ -276,13 +344,26 @@
                 <li>Parliamentary Practice and Procedure</li>
                 <li>Parliamentary Administration and Management</li>
                 <li>Competency Recruitment</li>
-                <!-- All 17 services fully listed -->
+                <li>Organisational Development</li>
+                <li>Employee Discipline</li>
+                <li>Collective Bargaining</li>
+                <li>Transformation Management</li>
+                <li>HR Policy Development</li>
+                <li>CCMA/Bargaining Council Representation</li>
+                <li>Strategic HR Planning</li>
+                <li>Employee Performance Management</li>
+                <li>Institutional Performance Management</li>
+                <li>Project Management</li>
+                <li>Training & Development</li>
+                <li>Organisational Design, Job Profiles & Job Grading</li>
+                <li>Sports Management & Administration</li>
                 <li>Commissioning of Oaths</li>
             </ul>
         </div>
     </div></div>
 </section>
 
+<!-- Contact -->
 <section id="contact">
     <h2>Contact Details</h2>
     <div class="contact-grid">
@@ -317,31 +398,35 @@
 </footer>
 
 <script>
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('show');
+    });
+
+    document.querySelectorAll('.links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('show');
+            hamburger.classList.remove('active');
+        });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(a.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
     });
 
-    const h = document.getElementById('hamburger'), n = document.getElementById('navLinks');
-    h.addEventListener('click', () => {
-        h.classList.toggle('active');
-        n.classList.toggle('show');
-    });
-    document.querySelectorAll('.links a').forEach(l => {
-        l.addEventListener('click', () => {
-            n.classList.remove('show');
-            h.classList.remove('active');
-        });
-    });
-
-    // Active link highlighting
     window.addEventListener('scroll', () => {
         let current = '';
         document.querySelectorAll('section').forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+            const sectionTop = section.offsetTop - 150;
+            if (scrollY >= sectionTop) current = section.getAttribute('id');
         });
         document.querySelectorAll('.links a').forEach(link => {
             link.classList.remove('active');
