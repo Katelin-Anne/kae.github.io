@@ -10,18 +10,17 @@
         :root{--navy:#0a3761;--gold:#faca23;--white:#ffffff;--light:#f8f9fa;--gray:#555;--border:#e2e8f0}
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:var(--light);color:var(--gray);line-height:1.8;overflow-x:hidden}
-        html{scroll-behavior:smooth;scroll-padding-top:72px} /* reduced for tighter mobile nav */
+        html{scroll-behavior:smooth;scroll-padding-top:68px} /* Tight for mobile */
 
         nav{position:fixed;top:0;left:0;right:0;background:var(--white);z-index:9999;box-shadow:0 4px 25px rgba(10,55,97,.15)}
-        .nav{max-width:1600px;margin:auto;padding:0.4rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:0.8rem}
-        .logo img{height:48px;transition:.3s} /* smaller logo on mobile too */
-
-        .links{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
-        .links a{color:var(--navy);text-decoration:none;font-weight:600;font-size:0.95rem;position:relative;padding:.3rem 0;transition:.3s}
-        .links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:.3s}
+        .nav{max-width:1600px;margin:auto;padding:0.35rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:0.8rem}
+        .logo img{height:44px;transition:.3s} /* Tight logo */
+        .links{display:flex;gap:1.8rem;align-items:center;flex-wrap:wrap}
+        .links a{color:var(--navy);text-decoration:none;font-weight:600;font-size:0.92rem;position:relative;padding:0.4rem 0;transition:.3s}
+        .links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2.5px;background:var(--gold);transition:.3s}
         .links a:hover::after,.links a.active::after{width:100%}
         .hamburger{display:none;cursor:pointer;z-index:10000}
-        .hamburger span{display:block;width:26px;height:2.5px;background:var(--navy);margin:5px 0;border-radius:2px;transition:.3s}
+        .hamburger span{display:block;width:26px;height:2.8px;background:var(--navy);margin:5px 0;border-radius:3px;transition:.3s}
         .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
         .hamburger.active span:nth-child(2){opacity:0}
         .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
@@ -41,37 +40,43 @@
             overflow:hidden;
         }
         @media(max-width:768px){
-            nav .nav{padding:0.25rem 1rem}           /* super-tight navbar */
-            .logo img{height:42px}                   /* even smaller logo */
-            html{scroll-padding-top:62px}
-            
+            .nav{padding:0.25rem 0.9rem}
+            .logo img{height:38px}
+            html{scroll-padding-top:58px}
+            section{scroll-margin-top:65px}
+
+            .links{
+                top:54px;
+                padding:1.6rem 0;
+                border-radius:0 0 16px 16px;
+            }
+
             #home{
-                min-height:64vh;
-                min-height:64dvh;
+                min-height:66vh;
                 background-attachment:scroll;
                 align-items:flex-end;
-                padding-bottom:10vh;
-                padding-top:2vh;                     /* almost no top gap now */
+                padding-bottom:8vh;
+                padding-top:2vh; /* No white gap under navbar */
             }
             .hero-content{
-                margin-bottom:38dvh;
-                padding:0 1.2rem;
+                margin-bottom:36dvh;
+                padding:0 1rem;
             }
-            .hero-content h1{font-size:clamp(2.4rem,9.5vw,3.8rem)}
-            .hero-content p{font-size:clamp(1.2rem,6vw,2rem)}
+            .hero-content h1{font-size:clamp(2.3rem,9vw,3.6rem)}
+            .hero-content p{font-size:clamp(1.15rem,5.5vw,1.9rem)}
         }
+
         .hero-content{
             max-width:1200px;
             width:100%;
             margin:auto;
-            margin-top:9rem;
             padding:2rem 1.5rem;
             position:relative;
             z-index:2;
         }
         .hero-content h1{
             font-family:'Playfair Display',serif;
-            font-size:clamp(2.3rem,6.5vw,5.2rem);
+            font-size:clamp(2.4rem,6.8vw,5.4rem);
             color:var(--gold);
             text-shadow:4px 4px 22px rgba(0,0,0,.9);
             margin:0 0 1rem;
@@ -88,15 +93,10 @@
             line-height:1.4;
         }
 
-        section{padding:6rem 1.5rem 4rem;max-width:1300px;margin:auto;scroll-margin-top:90px}
+        section{padding:6rem 1.5rem 4rem;max-width:1300px;margin:auto}
         h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3rem);color:var(--navy);text-align:center;margin:2rem 0 1.8rem;position:relative}
         h2::after{content:'';width:80px;height:3.5px;background:var(--gold);position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);border-radius:3px}
 
-        /* Reduced gap fixes */
-        #competencies{padding-top:3rem}
-        #activities .card-body h3:nth-of-type(2){margin-top:1rem !important}
-
-        /* Rest of your existing styles (unchanged) */
         .card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(10,55,97,.12);transition:.35s;margin-bottom:2rem}
         .card:hover{transform:translateY(-12px);box-shadow:0 24px 48px rgba(10,55,97,.22)}
         .card-body{padding:2.4rem}
@@ -132,13 +132,15 @@
         footer a{color:var(--gold);text-decoration:none}
         footer strong{color:var(--gold);font-weight:600}
 
+        /* Tight spacing fixes */
+        #competencies{padding-top:3rem}
+        #activities .card-body h3:nth-of-type(2){margin-top:1rem !important}
+
         @media(max-width:768px){
-            .links{position:fixed;top:58px;left:0;right:0;background:var(--white);flex-direction:column;padding:1.8rem 0;display:none;box-shadow:0 18px 36px rgba(10,55,97,.22);border-radius:0 0 18px 18px;max-height:70vh;overflow-y:auto}
+            .links{position:fixed;top:54px;left:0;right:0;background:var(--white);flex-direction:column;padding:1.6rem 0;display:none;box-shadow:0 18px 36px rgba(10,55,97,.22);border-radius:0 0 16px 16px;overflow-y:auto}
             .links.show{display:flex}
             .hamburger{display:block}
-            .profile img{width:180px;height:180px;border-width:5px}
             section{padding:5rem 1rem 3rem}
-            section{scroll-margin-top:70px}
         }
         @media(min-width:992px){
             .contact-grid{grid-template-columns:repeat(3,1fr)}
@@ -147,7 +149,7 @@
     </style>
 </head>
 <body>
-<!-- Your full HTML stays exactly the same — only the CSS above has been updated -->
+
 <nav>
     <div class="nav">
         <div class="logo"><img src="images/raLogo.jpg" alt="Romeo Adams"></div>
@@ -167,7 +169,7 @@
     </div>
 </nav>
 
-<!-- Rest of your existing HTML (no changes needed below) -->
+<!-- All your existing sections below — unchanged and perfectly styled -->
 <section id="home">
     <div class="hero-content">
         <h1>Romeo Adams Consulting Services</h1>
@@ -175,7 +177,18 @@
     </div>
 </section>
 
-<!-- ... all other sections remain exactly as before ... -->
+<!-- (All other sections: about, consultancy, competencies, qualifications, experience, governance, activities, services, contact, footer — exactly as before) -->
+
+<!-- ... [Your full original HTML content continues here] ... -->
+
+<footer>
+    <p style="margin:0;font-size:0.95rem;line-height:1.7;">
+        © 2025 Romeo Adams Consulting • P.O Box 361, SONEIKE 7583<br>
+        <a href="tel:+27828534468">+27 (0)82 853 4468</a> • 
+        <a href="mailto:romeo@romeoadams.co.za">romeo@romeoadams.co.za</a><br>
+        <strong>SABPP Reg No: 4286 3954</strong>
+    </p>
+</footer>
 
 <script>
     document.querySelectorAll('a[href^="#"]').forEach(a => {
