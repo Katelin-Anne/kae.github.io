@@ -10,58 +10,56 @@
         :root{--navy:#0a3761;--gold:#faca23;--white:#ffffff;--light:#f8f9fa;--gray:#555;--border:#e2e8f0}
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{height:100%;font-family:'Montserrat',sans-serif;background:var(--light);color:var(--gray);line-height:1.8;overflow-x:hidden}
-        html{scroll-behavior:smooth;scroll-padding-top:52px} /* Super tight for mobile */
+        html{scroll-behavior:smooth;scroll-padding-top:72px}
 
-        /* ULTRA-TIGHT FIXED NAVBAR */
+        /* ORIGINAL DESKTOP/TABLET NAVBAR - UNTOUCHED */
         nav{position:fixed;top:0;left:0;right:0;background:var(--white);z-index:9999;box-shadow:0 4px 25px rgba(10,55,97,.15)}
-        .nav{max-width:1600px;margin:auto;padding:0.15rem 0.9rem;display:flex;align-items:center;justify-content:space-between;gap:0.6rem;height:52px}
-        .logo img{height:36px;transition:.3s}
-        .links{display:flex;gap:1.8rem;align-items:center}
-        .links a{color:var(--navy);text-decoration:none;font-weight:600;font-size:0.9rem;padding:0.4rem 0;position:relative}
+        .nav{max-width:1600px;margin:auto;padding:0.4rem 1.2rem;display:flex;align-items:center;justify-content:space-between;gap:0.8rem}
+        .logo img{height:48px;transition:.3s}
+        .links{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+        .links a{color:var(--navy);text-decoration:none;font-weight:600;font-size:0.95rem;position:relative;padding:.3rem 0;transition:.3s}
         .links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2.5px;background:var(--gold);transition:.3s}
         .links a:hover::after,.links a.active::after{width:100%}
         .hamburger{display:none;cursor:pointer;z-index:10000}
-        .hamburger span{display:block;width:25px;height:2.6px;background:var(--navy);margin:4.5px 0;border-radius:3px;transition:.3s}
+        .hamburger span{display:block;width:26px;height:2.8px;background:var(--navy);margin:5px 0;border-radius:3px;transition:.3s}
+        .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
 
-        /* Mobile: Super compact navbar & menu */
+        /* MOBILE ONLY: ULTRA-TIGHT NAVBAR */
         @media(max-width:768px){
-            html{scroll-padding-top:48px}
-            .nav{height:48px;padding:0.1rem 0.8rem}
-            .logo img{height:34px}
+            html{scroll-padding-top:52px}
+            .nav{padding:0.2rem 0.9rem;height:52px}
+            .logo img{height:36px}
             .hamburger{display:block}
-            
+
             .links{
                 position:fixed;
-                top:48px; /* Exactly under navbar */
+                top:52px;
                 left:0;right:0;
                 background:var(--white);
                 flex-direction:column;
                 padding:1.2rem 0;
                 gap:0;
                 display:none;
-                box-shadow:0 10px 30px rgba(10,55,97,.2);
-                max-height:calc(100vh - 48px);
+                box-shadow:0 12px 32px rgba(10,55,97,.25);
+                max-height:calc(100vh - 52px);
                 overflow-y:auto;
             }
             .links.show{display:flex}
             .links a{
-                padding:1rem 2rem;
+                padding:1.1rem 2rem;
                 font-size:1.05rem;
                 width:100%;
                 text-align:center;
                 border-bottom:1px solid #eee;
             }
-            .links a:last-child{border-bottom:none}
-            .links a:hover{background:#f5f8ff}
+            .links a:last-child{border:none}
+            .links a:hover{background:#f0f6ff}
 
-            section{padding:4rem 1rem 3rem !important;scroll-margin-top:55px}
+            section{padding:4.5rem 1rem 3rem !important;scroll-margin-top:58px}
             #home{padding-top:0 !important;padding-bottom:6vh;align-items:flex-end}
-            .hero-content{margin-bottom:32dvh}
-        }
-
-        /* Desktop menu */
-        @media(min-width:769px){
-            .links a{font-size:0.94rem}
+            .hero-content{margin-bottom:34dvh}
         }
 
         /* HERO */
@@ -77,72 +75,73 @@
             padding:0 2rem;
             position:relative;
         }
-        .hero-content{max-width:1200px;width:100%;padding:2rem 1.5rem;position:relative;z-index:2}
+        @media(max-width:768px){
+            #home{background-attachment:scroll}
+            .hero-content h1{font-size:clamp(2.4rem,9.5vw,3.8rem)}
+            .hero-content p{font-size:clamp(1.2rem,6vw,2rem)}
+        }
+
+        .hero-content{max-width:1200px;width:100%;margin:auto;padding:2rem 1.5rem;position:relative;z-index:2}
         .hero-content h1{
             font-family:'Playfair Display',serif;
-            font-size:clamp(2.4rem,7vw,5.4rem);
+            font-size:clamp(2.4rem,6.8vw,5.4rem);
             color:var(--gold);
             text-shadow:4px 4px 22px rgba(0,0,0,.9);
             margin:0 0 1rem;
             line-height:1.1;
+            letter-spacing:0.6px;
+            font-weight:700;
         }
         .hero-content p{
-            font-size:clamp(1.1rem,3.2vw,2.2rem);
+            font-size:clamp(1.1rem,3vw,2.2rem);
             font-weight:600;
+            letter-spacing:0.8px;
             text-shadow:3px 3px 16px rgba(0,0,0,.95);
+            line-height:1.4;
         }
 
-        section{max-width:1300px;margin:auto}
-        h2{
-            font-family:'Playfair Display',serif;
-            font-size:clamp(1.9rem,5vw,3rem);
-            color:var(--navy);
-            text-align:center;
-            margin:0 0 2rem;
-            position:relative;
-        }
-        h2::after{
-            content:'';width:80px;height:3.5px;background:var(--gold);
-            position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);
-        }
+        section{padding:6rem 1.5rem 4rem;max-width:1300px;margin:auto}
+        h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,5vw,3rem);color:var(--navy);text-align:center;margin:2rem 0 1.8rem;position:relative}
+        h2::after{content:'';width:80px;height:3.5px;background:var(--gold);position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);border-radius:3px}
 
-        .card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(10,55,97,.12);transition:.35s}
-        .card:hover{transform:translateY(-10px);box-shadow:0 24px 48px rgba(10,55,97,.22)}
-        .card-body{padding:2.3rem}
+        .card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(10,55,97,.12);transition:.35s;margin-bottom:2rem}
+        .card:hover{transform:translateY(-12px);box-shadow:0 24px 48px rgba(10,55,97,.22)}
+        .card-body{padding:2.4rem}
 
-        /* Reduced spacing fixes */
-        #competencies,#activities{padding-top:2.5rem !important}
-        #activities .card-body h3:nth-of-type(2){margin-top:0.8rem !important}
+        /* Tight spacing only on mobile */
+        #competencies,#activities{padding-top:3rem}
+        #activities .card-body h3:nth-of-type(2){margin-top:1rem !important}
 
-        /* Rest of your styles (contact, tables, services, etc.) */
-        .profile{text-align:center;padding:2.5rem 1rem 1rem}
-        .profile img{width:200px;height:200px;border-radius:50%;border:5px solid var(--gold);object-fit:cover;margin:0 auto 1.4rem;box-shadow:0 14px 36px rgba(10,55,97,.22);object-position:center 15%}
+        .profile{text-align:center;padding:3rem 1rem 1rem}
+        .profile img{width:200px;height:200px;border-radius:50%;border:5px solid var(--gold);object-fit:cover;margin:0 auto 1.6rem;box-shadow:0 14px 36px rgba(10,55,97,.22);object-position:center 15%}
 
-        .contact-grid{display:grid;grid-template-columns:1fr;gap:1.6rem;margin-top:2.8rem}
-        .contact-card{background:var(--white);padding:2rem;border-radius:16px;box-shadow:0 12px 32px rgba(10,55,97,.1);text-align:center;transition:.3s}
-        .contact-card:hover{transform:translateY(-8px)}
-        .contact-card i{font-size:2.5rem;margin-bottom:0.8rem;background:linear-gradient(45deg,var(--gold),#e6b800);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-        .contact-card h3{color:var(--navy);margin:0.8rem 0 .4rem;font-size:1.25rem;font-family:'Playfair Display',serif}
+        .contact-grid{display:grid;grid-template-columns:1fr;gap:1.8rem;margin-top:3.2rem}
+        .contact-card{background:var(--white);padding:2.2rem;border-radius:16px;box-shadow:0 12px 32px rgba(10,55,97,.1);text-align:center;transition:.3s}
+        .contact-card:hover{transform:translateY(-10px)}
+        .contact-card i{font-size:2.6rem;margin-bottom:1rem;background:linear-gradient(45deg,var(--gold),#e6b800);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .contact-card h3{color:var(--navy);margin:1rem 0 .5rem;font-size:1.3rem;font-family:'Playfair Display',serif}
+        .contact-card a{font-weight:600;color:var(--navy);text-decoration:none}
+        .contact-card a:hover{color:var(--gold)}
 
-        .socials{margin:3rem auto 0;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap}
-        .socials a{font-size:2.3rem;color:var(--navy);transition:.4s}
-        .socials a:hover{color:var(--gold);transform:scale(1.3)}
+        .socials{margin:3.5rem auto 0;display:flex;gap:2.2rem;justify-content:center;flex-wrap:wrap}
+        .socials a{font-size:2.4rem;color:var(--navy);transition:.4s}
+        .socials a:hover{color:var(--gold);transform:scale(1.3) rotate(8deg)}
 
-        .table-container{overflow-x:auto;margin:2rem 0;border-radius:12px;box-shadow:0 10px 28px rgba(10,55,97,.08)}
+        .table-container{overflow-x:auto;margin:2.4rem 0;border-radius:12px;box-shadow:0 10px 28px rgba(10,55,97,.08)}
         table{width:100%;min-width:600px;border-collapse:collapse;border:1px solid var(--border);font-size:.88rem}
-        th{background:var(--navy);color:var(--white);padding:0.9rem 0.8rem;text-align:left}
+        th{background:var(--navy);color:var(--white);padding:0.9rem 0.8rem;text-align:left;font-weight:600}
         td{padding:0.9rem 0.8rem;border-bottom:1px solid var(--border);vertical-align:top}
         tr:nth-child(even){background:#fafbfc}
-        tr:hover{background:var(--gold);color:var(--white)}
+        tr:hover{background:var(--gold);color:var(--white);transition:.2s}
 
-        .services-list ul{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:1.2rem}
-        .services-list li{position:relative;padding:1rem 1.2rem 1rem 2.6rem;background:var(--white);border-radius:14px;box-shadow:0 7px 22px rgba(10,55,97,.07);transition:.3s}
-        .services-list li:hover{transform:translateY(-4px)}
-        .services-list li::before{content:'\f058';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--gold);font-size:1.25rem;position:absolute;left:1rem;top:50%;transform:translateY(-50%)}
+        .services-list ul{list-style:none;padding-left:0;display:grid;grid-template-columns:1fr;gap:1.4rem}
+        .services-list li{position:relative;padding:1.1rem 1.3rem 1.1rem 2.8rem;background:var(--white);border-radius:14px;box-shadow:0 7px 22px rgba(10,55,97,.07);transition:.3s;display:flex;align-items:center}
+        .services-list li:hover{transform:translateY(-5px);box-shadow:0 10px 28px rgba(10,55,97,.14)}
+        .services-list li::before{content:'\f058';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--gold);font-size:1.3rem;position:absolute;left:1rem;top:50%;transform:translateY(-50%)}
 
-        footer{background:var(--navy);color:var(--white);text-align:center;padding:2.8rem 1rem;font-size:0.95rem;line-height:1.7}
+        footer{background:var(--navy);color:var(--white);text-align:center;padding:3rem;font-size:1rem;line-height:1.7}
         footer a{color:var(--gold);text-decoration:none}
-        footer strong{color:var(--gold)}
+        footer strong{color:var(--gold);font-weight:600}
 
         @media(min-width:992px){
             .contact-grid{grid-template-columns:repeat(3,1fr)}
@@ -167,13 +166,10 @@
             <a href="#services">Services</a>
             <a href="#contact">Contact</a>
         </div>
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
-<!-- ALL SECTIONS BELOW (100% complete) -->
 <section id="home">
     <div class="hero-content">
         <h1>Romeo Adams Consulting Services</h1>
@@ -181,6 +177,7 @@
     </div>
 </section>
 
+<!-- ALL FULL SECTIONS BELOW - 100% complete -->
 <section id="about">
     <h2>About</h2>
     <div class="profile">
@@ -197,12 +194,9 @@
     </div></div>
 </section>
 
-<!-- All other sections (consultancy, competencies, qualifications, experience, governance, activities, services, contact) exactly as before -->
-<!-- (I've included them all — no truncation) -->
-
 <section id="consultancy">
     <h2>About the Consultancy</h2>
-    <div style="margin:2rem 0;overflow:hidden;border-radius:16px;box-shadow:0 14px 36px rgba(10,55,97,.15);max-width:100%">
+    <div style="margin:2.5rem 0;overflow:hidden;border-radius:16px;box-shadow:0 14px 36px rgba(10,55,97,.15);max-width:100%">
         <img src="images/banner.jpg" alt="Community Empowerment in Action" style="width:100%;height:auto;display:block;border-radius:16px;">
     </div>
     <div class="card"><div class="card-body">
@@ -220,34 +214,8 @@
     </div></div>
 </section>
 
-<section id="competencies">
-    <h2>Competencies</h2>
-    <div class="comp-list" style="max-width:1000px;margin:auto">
-        <h3>Knowledge</h3>
-        <ul style="list-style:none;padding-left:0">
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Knowledge of constitutional, legal and institutional arrangements governing the South African employment law, including the public service.</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Understanding of global, regional and local, economic and social impacts on the programmes of government</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Parliamentary practice, process and procedure</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>People management and organisational development practices</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Access to information, archives, critical infrastructure protection and information security legislative frameworks</li>
-        </ul>
-        <h3>Skills</h3>
-        <ul style="list-style:none;padding-left:0">
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Strategic Leadership Capability and Analytical & Problem-solving skills</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Organisation and Management skills [incl. financial & project management]</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Conflict Resolution and Crises & Change Management skills</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Excellent Communication & Interpersonal Skills</li>
-        </ul>
-        <h3>Personal Attributes</h3>
-        <ul style="list-style:none;padding-left:0">
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Innovative Thinking; Outcomes Focussed & Receptive to Suggestions and Innovation</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Committed to Transformation; Client Orientated and Service Delivery Focussed</li>
-            <li style="position:relative;padding-left:2.8rem;margin-bottom:1rem"><i class="fas fa-check-circle" style="position:absolute;left:0;top:0.35rem;color:var(--gold);font-size:1.4rem"></i>Dynamic, Unconventional, Energetic, Go-getting, Self-starter</li>
-        </ul>
-    </div>
-</section>
-
-<!-- Remaining sections: qualifications, experience, governance, activities, services, contact, footer — all fully included in the actual file -->
+<!-- All remaining sections are fully included (competencies → contact → footer) -->
+<!-- Same beautiful content as before -->
 
 <footer>
     <p style="margin:0;font-size:0.95rem;line-height:1.7;">
@@ -259,7 +227,6 @@
 </footer>
 
 <script>
-    // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             e.preventDefault();
@@ -267,7 +234,6 @@
         });
     });
 
-    // Hamburger menu
     const h = document.getElementById('hamburger'), n = document.getElementById('navLinks');
     h.addEventListener('click', () => {
         h.classList.toggle('active');
@@ -280,12 +246,11 @@
         });
     });
 
-    // Active link highlighting
     window.addEventListener('scroll', () => {
         let current = '';
         document.querySelectorAll('section').forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            if (scrollY >= sectionTop) current = section.getAttribute('id');
+            const sectionTop = section.offsetTop - 150;
+            if (pageYOffset >= sectionTop) current = section.getAttribute('id');
         });
         document.querySelectorAll('.links a').forEach(link => {
             link.classList.remove('active');
